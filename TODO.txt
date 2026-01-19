@@ -1,0 +1,4 @@
+Correcoes em modo escuro para novos componentes;
+Layout exclusivo para cliente;
+Usar imagens da api
+separar telas em model, view, types e style
