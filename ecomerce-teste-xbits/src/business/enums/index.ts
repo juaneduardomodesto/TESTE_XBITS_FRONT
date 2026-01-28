@@ -20,11 +20,11 @@ export enum EOrderStatus {
 }
 
 export enum EPaymentMethod {
-  CreditCard = 0,
-  DebitCard = 1,
-  Pix = 2,
-  Cash = 3,
-  BankSlip = 4
+  CreditCard = 1,
+  DebitCard = 2,
+  Pix = 3,
+  Cash = 4,
+  BankSlip = 5
 }
 
 export enum EPaymentStatus {
