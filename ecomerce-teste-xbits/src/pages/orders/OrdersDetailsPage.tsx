@@ -1,4 +1,4 @@
-import { OrderResponse, orderService, OrderStatusLabels, PaymentStatusLabels, PaymentMethodLabels } from "@/business";
+import { OrderResponse, orderService, OrderStatusLabels, PaymentStatusLabels, PaymentMethodLabels, parseOrderStatus, parsePaymentStatus, parsePaymentMethod } from "@/business";
 import { Button } from "@/components/ui/Button";
 import { ArrowLeft, Package, CreditCard, Truck } from "lucide-react";
 import { format } from "date-fns";
@@ -6,7 +6,6 @@ import { ptBR } from "date-fns/locale";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { useParams, useNavigate } from "react-router-dom";
-
 
 export function OrderDetailPage() {
   const { id } = useParams();
@@ -54,6 +53,10 @@ export function OrderDetailPage() {
     return <div className="text-center py-8">Pedido não encontrado</div>;
   }
 
+  const orderStatus = parseOrderStatus(order.status);
+  const paymentStatus = parsePaymentStatus(order.paymentStatus);
+  const paymentMethod = parsePaymentMethod(order.paymentMethod);
+
   const getStatusColor = (status: number) => {
     const colors = {
       0: 'bg-yellow-100 text-yellow-800',
@@ -85,7 +88,7 @@ export function OrderDetailPage() {
                 Realizado em {format(new Date(order.createdAt), "dd 'de' MMMM 'de' yyyy 'às' HH:mm", { locale: ptBR })}
               </p>
             </div>
-            {order.status === 0 && (
+            {orderStatus === 0 && (
               <Button variant="danger" onClick={handleCancelOrder}>
                 Cancelar Pedido
               </Button>
@@ -99,8 +102,8 @@ export function OrderDetailPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-600">Status do Pedido</p>
-                <span className={`inline-block mt-1 px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(order.status)}`}>
-                  {OrderStatusLabels[order.status]}
+                <span className={`inline-block mt-1 px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(orderStatus)}`}>
+                  {OrderStatusLabels[orderStatus]}
                 </span>
               </div>
             </div>
@@ -111,11 +114,11 @@ export function OrderDetailPage() {
               </div>
               <div>
                 <p className="text-sm text-gray-600">Pagamento</p>
-                <span className={`inline-block mt-1 px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(order.paymentStatus)}`}>
-                  {PaymentStatusLabels[order.paymentStatus]}
+                <span className={`inline-block mt-1 px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(paymentStatus)}`}>
+                  {PaymentStatusLabels[paymentStatus]}
                 </span>
                 <p className="text-xs text-gray-500 mt-1">
-                  {PaymentMethodLabels[order.paymentMethod]}
+                  {PaymentMethodLabels[paymentMethod]}
                 </p>
               </div>
             </div>

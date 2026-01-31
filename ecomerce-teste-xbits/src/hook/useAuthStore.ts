@@ -51,6 +51,19 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   logout: () => {
     authService.logout();
+
+    import('./useCartStore').then(({ useCartStore }) => {
+      useCartStore.setState({ 
+        cart: null, 
+        loading: false,
+        initialized: false 
+      });
+    });
+
+    import('./useOrderStore').then(({ useOrderStore }) => {
+      useOrderStore.getState().reset();
+    });
+    
     set({ isAuthenticated: false, userIdentifier: null, user: null });
   },
 

@@ -4,16 +4,26 @@ import { create } from 'zustand';
 interface CartState {
   cart: CartResponse | null;
   loading: boolean;
+  initialized: boolean;
   fetchCart: () => Promise<void>;
   addToCart: (request: AddToCartRequest) => Promise<void>;
   updateCartItem: (request: UpdateCartItemRequest) => Promise<void>;
   removeFromCart: (cartItemId: number) => Promise<void>;
   clearCart: () => Promise<void>;
+  initialize: () => Promise<void>;
 }
 
 export const useCartStore = create<CartState>((set, get) => ({
   cart: null,
   loading: false,
+  initialized: false,
+
+  initialize: async () => {
+    if (get().initialized) return;
+    
+    set({ initialized: true });
+    await get().fetchCart();
+  },
 
   fetchCart: async () => {
     set({ loading: true });
@@ -22,7 +32,7 @@ export const useCartStore = create<CartState>((set, get) => ({
       set({ cart, loading: false });
     } catch (error) {
       set({ loading: false });
-      throw error;
+      console.error('Error fetching cart:', error);
     }
   },
 

@@ -1,38 +1,13 @@
-import { OrderResponse, orderService, OrderStatusLabels, PaymentStatusLabels } from "@/business";
+import { OrderResponse, orderService, OrderStatusLabels, PaymentStatusLabels, parseOrderStatus, parsePaymentStatus } from "@/business";
 import { Button } from "@/components/ui/Button";
 import { Eye } from "lucide-react";
 import { format } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { useState, useEffect } from "react";
-import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-
+import { useOrderStore } from "@/hook/useOrderStore";
 
 export function OrdersPage() {
-  const [orders, setOrders] = useState<OrderResponse[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-
-  const loadOrders = async () => {
-    try {
-      setLoading(true);
-      const response = await orderService.getMyOrders({
-        pageNumber: currentPage,
-        pageSize: 10
-      });
-      setOrders(response.items);
-      setTotalPages(response.totalPages);
-    } catch (error: any) {
-      toast.error('Erro ao carregar pedidos');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadOrders();
-  }, [currentPage]);
+  const { orders, loading, currentPage, totalPages, setPage } = useOrderStore();
 
   const getStatusColor = (status: number) => {
     const colors = {
@@ -88,39 +63,43 @@ export function OrdersPage() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                  {orders.map((order) => (
-                    <tr key={order.id} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 text-sm font-medium text-gray-900">
-                        #{order.orderNumber}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-gray-600">
-                        {format(new Date(order.createdAt), 'dd/MM/yyyy HH:mm', { locale: ptBR })}
-                      </td>
-                      <td className="px-6 py-4 text-sm">
-                        <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusColor(order.status)}`}>
-                          {OrderStatusLabels[order.status]}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-sm">
-                        <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusColor(order.paymentStatus)}`}>
-                          {PaymentStatusLabels[order.paymentStatus]}
-                        </span>
-                      </td>
-                      <td className="px-6 py-4 text-sm font-semibold text-gray-900">
-                        {new Intl.NumberFormat('pt-BR', {
-                          style: 'currency',
-                          currency: 'BRL'
-                        }).format(order.total)}
-                      </td>
-                      <td className="px-6 py-4 text-sm text-right">
-                        <Link to={`/orders/${order.id}`}>
-                          <Button variant="ghost" size="sm">
-                            <Eye className="w-4 h-4" />
-                          </Button>
-                        </Link>
-                      </td>
-                    </tr>
-                  ))}
+                  {orders.map((order) => {
+                    const orderStatus = parseOrderStatus(order.status);
+                    const paymentStatus = parsePaymentStatus(order.paymentStatus);
+                    return (
+                      <tr key={order.id} className="hover:bg-gray-50">
+                        <td className="px-6 py-4 text-sm font-medium text-gray-900">
+                          #{order.orderNumber}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {format(new Date(order.createdAt), 'dd/MM/yyyy HH:mm', { locale: ptBR })}
+                        </td>
+                        <td className="px-6 py-4 text-sm">
+                          <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusColor(orderStatus)}`}>
+                            {OrderStatusLabels[orderStatus]}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-sm">
+                          <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getStatusColor(paymentStatus)}`}>
+                            {PaymentStatusLabels[paymentStatus]}
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-sm font-semibold text-gray-900">
+                          {new Intl.NumberFormat('pt-BR', {
+                            style: 'currency',
+                            currency: 'BRL'
+                          }).format(order.total)}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-right">
+                          <Link to={`/orders/${order.id}`}>
+                            <Button variant="ghost" size="sm">
+                              <Eye className="w-4 h-4" />
+                            </Button>
+                          </Link>
+                        </td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -130,7 +109,7 @@ export function OrdersPage() {
                 <Button
                   variant="secondary"
                   disabled={currentPage === 1}
-                  onClick={() => setCurrentPage(currentPage - 1)}
+                  onClick={() => setPage(currentPage - 1)}
                 >
                   Anterior
                 </Button>
@@ -140,7 +119,7 @@ export function OrdersPage() {
                 <Button
                   variant="secondary"
                   disabled={currentPage === totalPages}
-                  onClick={() => setCurrentPage(currentPage + 1)}
+                  onClick={() => setPage(currentPage + 1)}
                 >
                   Próxima
                 </Button>

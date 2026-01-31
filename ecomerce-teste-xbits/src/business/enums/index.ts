@@ -1,4 +1,3 @@
-
 export enum ERoles {
   Administrator = 1,
   Employee = 2,
@@ -50,7 +49,7 @@ export enum EImageType {
   Banner = 6
 }
 
-
+// ===== LABELS =====
 
 export const RoleLabels: Record<ERoles, string> = {
   [ERoles.Administrator]: 'Administrador',
@@ -86,3 +85,58 @@ export const PaymentStatusLabels: Record<EPaymentStatus, string> = {
   [EPaymentStatus.Failed]: 'Falhou',
   [EPaymentStatus.Refunded]: 'Reembolsado'
 };
+
+// ===== UTILITY FUNCTIONS =====
+
+export function parseOrderStatus(status: string | number): EOrderStatus {
+  if (typeof status === 'number') return status;
+  
+  const statusMap: Record<string, EOrderStatus> = {
+    'Pending': EOrderStatus.Pending,
+    'Processing': EOrderStatus.Processing,
+    'Shipped': EOrderStatus.Shipped,
+    'Delivered': EOrderStatus.Delivered,
+    'Cancelled': EOrderStatus.Cancelled
+  };
+  
+  return statusMap[status] ?? EOrderStatus.Pending;
+}
+
+export function parsePaymentStatus(status: string | number): EPaymentStatus {
+  if (typeof status === 'number') return status;
+  
+  const statusMap: Record<string, EPaymentStatus> = {
+    'Pending': EPaymentStatus.Pending,
+    'Paid': EPaymentStatus.Paid,
+    'Failed': EPaymentStatus.Failed,
+    'Refunded': EPaymentStatus.Refunded
+  };
+  
+  return statusMap[status] ?? EPaymentStatus.Pending;
+}
+
+export function parsePaymentMethod(method: string | number): EPaymentMethod {
+  if (typeof method === 'number') return method;
+  
+  const methodMap: Record<string, EPaymentMethod> = {
+    'CreditCard': EPaymentMethod.CreditCard,
+    'DebitCard': EPaymentMethod.DebitCard,
+    'Pix': EPaymentMethod.Pix,
+    'Cash': EPaymentMethod.Cash,
+    'BankSlip': EPaymentMethod.BankSlip
+  };
+  
+  return methodMap[method] ?? EPaymentMethod.CreditCard;
+}
+
+export function parseCartStatus(status: string | number): ECartStatus {
+  if (typeof status === 'number') return status;
+  
+  const statusMap: Record<string, ECartStatus> = {
+    'Active': ECartStatus.Active,
+    'CheckedOut': ECartStatus.CheckedOut,
+    'Abandoned': ECartStatus.Abandoned
+  };
+  
+  return statusMap[status] ?? ECartStatus.Active;
+}

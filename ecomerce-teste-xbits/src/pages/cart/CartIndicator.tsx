@@ -1,14 +1,9 @@
 import { useCartStore } from "@/hook/useCartStore";
 import { ShoppingCart } from "lucide-react";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export function CartIndicator() {
-  const { cart, fetchCart } = useCartStore();
-
-  useEffect(() => {
-    fetchCart();
-  }, [fetchCart]);
+  const cart = useCartStore(state => state.cart);
 
   const itemCount = cart?.totalItems || 0;
   const totalValue = cart?.subtotal || 0;

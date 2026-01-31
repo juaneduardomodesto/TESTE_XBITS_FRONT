@@ -1,17 +1,12 @@
 import { Button } from "@/components/ui/Button";
 import { useCartStore } from "@/hook/useCartStore";
 import { ShoppingBag, Minus, Plus, Trash2, ShoppingCart, AlertCircle } from "lucide-react";
-import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 
 export function CartPage() {
   const navigate = useNavigate();
-  const { cart, loading, fetchCart, updateCartItem, removeFromCart, clearCart } = useCartStore();
-
-  useEffect(() => {
-    fetchCart();
-  }, [fetchCart]);
+  const { cart, loading, updateCartItem, removeFromCart, clearCart } = useCartStore();
 
   const handleUpdateQuantity = async (cartItemId: number, currentQuantity: number, change: number) => {
     const newQuantity = currentQuantity + change;
