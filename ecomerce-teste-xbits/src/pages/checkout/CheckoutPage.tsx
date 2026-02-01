@@ -12,7 +12,6 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import z from "zod";
 
-
 const checkoutSchema = z.object({
   paymentMethod: z.nativeEnum(EPaymentMethod),
   shippingCost: z.number().min(0),
@@ -71,7 +70,7 @@ export function CheckoutPage() {
   };
 
   if (!cart) {
-    return <div className="text-center py-8">Carregando...</div>;
+    return <div className="text-center py-8 text-light-text-primary dark:text-dark-text-primary">Carregando...</div>;
   }
 
   return (
@@ -85,14 +84,14 @@ export function CheckoutPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2">
-          <div className="bg-white rounded-lg shadow p-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-8">
+          <div className="bg-light-card dark:bg-dark-card rounded-lg shadow-lg-light dark:shadow-lg-dark p-8">
+            <h1 className="text-3xl font-bold text-light-text-primary dark:text-dark-text-primary mb-8">
               Finalizar Compra
             </h1>
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-              <div className="border-b pb-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <div className="border-b border-light-border dark:border-dark-border pb-6">
+                <h2 className="text-xl font-semibold text-light-text-primary dark:text-dark-text-primary mb-4">
                   Forma de Pagamento
                 </h2>
                 <Select
@@ -106,8 +105,8 @@ export function CheckoutPage() {
                 />
               </div>
 
-              <div className="border-b pb-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+              <div className="border-b border-light-border dark:border-dark-border pb-6">
+                <h2 className="text-xl font-semibold text-light-text-primary dark:text-dark-text-primary mb-4">
                   Valores Adicionais
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -129,7 +128,7 @@ export function CheckoutPage() {
               </div>
 
               <div>
-                <h2 className="text-xl font-semibold text-gray-900 mb-4">
+                <h2 className="text-xl font-semibold text-light-text-primary dark:text-dark-text-primary mb-4">
                   Observações
                 </h2>
                 <Textarea
@@ -140,7 +139,7 @@ export function CheckoutPage() {
                 />
               </div>
 
-              <div className="flex justify-end space-x-4 pt-6 border-t">
+              <div className="flex justify-end space-x-4 pt-6 border-t border-light-border dark:border-dark-border">
                 <Button
                   type="button"
                   variant="secondary"
@@ -158,11 +157,11 @@ export function CheckoutPage() {
         </div>
 
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow p-6 sticky top-8">
-            <h2 className="text-xl font-bold text-gray-900 mb-4">Resumo do Pedido</h2>
+          <div className="bg-light-card dark:bg-dark-card rounded-lg shadow-lg-light dark:shadow-lg-dark p-6 sticky top-8">
+            <h2 className="text-xl font-bold text-light-text-primary dark:text-dark-text-primary mb-4">Resumo do Pedido</h2>
 
             <div className="space-y-3 mb-6">
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-light-text-secondary dark:text-dark-text-secondary">
                 <span>Subtotal ({cart.totalItems} itens)</span>
                 <span>
                   {new Intl.NumberFormat('pt-BR', {
@@ -172,7 +171,7 @@ export function CheckoutPage() {
                 </span>
               </div>
 
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-light-text-secondary dark:text-dark-text-secondary">
                 <span>Frete</span>
                 <span>
                   {new Intl.NumberFormat('pt-BR', {
@@ -183,7 +182,7 @@ export function CheckoutPage() {
               </div>
 
               {discount > 0 && (
-                <div className="flex justify-between text-green-600">
+                <div className="flex justify-between text-green-600 dark:text-green-400">
                   <span>Desconto</span>
                   <span>
                     -{new Intl.NumberFormat('pt-BR', {
@@ -194,10 +193,10 @@ export function CheckoutPage() {
                 </div>
               )}
 
-              <div className="border-t pt-3">
-                <div className="flex justify-between font-bold text-lg text-gray-900">
+              <div className="border-t border-light-border dark:border-dark-border pt-3">
+                <div className="flex justify-between font-bold text-lg text-light-text-primary dark:text-dark-text-primary">
                   <span>Total</span>
-                  <span className="text-indigo-600">
+                  <span className="text-light-accent dark:text-dark-accent">
                     {new Intl.NumberFormat('pt-BR', {
                       style: 'currency',
                       currency: 'BRL'
@@ -207,11 +206,11 @@ export function CheckoutPage() {
               </div>
             </div>
 
-            <div className="border-t pt-4">
-              <h3 className="font-semibold text-gray-900 mb-2">Itens do Pedido</h3>
+            <div className="border-t border-light-border dark:border-dark-border pt-4">
+              <h3 className="font-semibold text-light-text-primary dark:text-dark-text-primary mb-2">Itens do Pedido</h3>
               <div className="space-y-2">
                 {cart.items.map((item) => (
-                  <div key={item.id} className="flex justify-between text-sm text-gray-600">
+                  <div key={item.id} className="flex justify-between text-sm text-light-text-secondary dark:text-dark-text-secondary">
                     <span>{item.productName} x {item.quantity}</span>
                     <span>
                       {new Intl.NumberFormat('pt-BR', {

@@ -1,3 +1,4 @@
+// Textarea.tsx
 import { TextareaHTMLAttributes, forwardRef } from 'react';
 import { clsx } from 'clsx';
 
@@ -11,17 +12,17 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className="w-full">
         {label && (
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="block text-sm font-medium text-light-text-primary dark:text-dark-text-primary mb-1">
             {label}
           </label>
         )}
         <textarea
           ref={ref}
           className={clsx(
-            'block w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-colors resize-none',
+            'block w-full px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent focus:border-transparent transition-colors resize-none',
             error
               ? 'border-red-300 text-red-900 placeholder-red-300'
-              : 'border-gray-300 text-gray-900 placeholder-gray-400',
+              : 'border-light-border dark:border-dark-border bg-light-surface dark:bg-dark-surface text-light-text-primary dark:text-dark-text-primary placeholder-light-text-tertiary dark:placeholder-dark-text-tertiary',
             className
           )}
           rows={4}

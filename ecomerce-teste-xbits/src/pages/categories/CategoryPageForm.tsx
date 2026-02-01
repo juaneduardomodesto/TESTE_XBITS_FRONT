@@ -74,7 +74,7 @@ export function CategoryFormPage() {
   };
 
   if (loading) {
-    return <div className="text-center py-8">Carregando...</div>;
+    return <div className="text-center py-8 text-light-text-primary dark:text-dark-text-primary">Carregando...</div>;
   }
 
   return (
@@ -86,8 +86,8 @@ export function CategoryFormPage() {
         </Button>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">
+      <div className="bg-light-card dark:bg-dark-card rounded-lg shadow-lg-light dark:shadow-lg-dark p-8">
+        <h1 className="text-3xl font-bold text-light-text-primary dark:text-dark-text-primary mb-8">
           {isEditing ? 'Editar Categoria' : 'Nova Categoria'}
         </h1>
 
@@ -112,7 +112,7 @@ export function CategoryFormPage() {
             {...register('description')}
           />
 
-          <div className="flex justify-end space-x-4 pt-6 border-t">
+          <div className="flex justify-end space-x-4 pt-6 border-t border-light-border dark:border-dark-border">
             <Button
               type="button"
               variant="secondary"

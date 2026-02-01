@@ -41,16 +41,16 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
       <div className="flex min-h-screen items-center justify-center px-4 pt-4 pb-20 text-center sm:block sm:p-0">
         {/* Backdrop */}
         <div
-          className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+          className="fixed inset-0 bg-black bg-opacity-50 dark:bg-opacity-70 transition-opacity"
           onClick={onClose}
         />
 
         {/* Modal */}
-        <div className={`inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full ${sizes[size]}`}>
+        <div className={`inline-block align-bottom bg-light-card dark:bg-dark-card rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle w-full ${sizes[size]}`}>
           {/* Header */}
-          <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4 border-b border-gray-200">
+          <div className="bg-light-card dark:bg-dark-card px-4 pt-5 pb-4 sm:p-6 sm:pb-4 border-b border-light-border dark:border-dark-border">
             <div className="flex items-center justify-between">
-              <h3 className="text-lg font-semibold text-gray-900">{title}</h3>
+              <h3 className="text-lg font-semibold text-light-text-primary dark:text-dark-text-primary">{title}</h3>
               <Button variant="ghost" size="sm" onClick={onClose}>
                 <X className="w-5 h-5" />
               </Button>
@@ -58,7 +58,7 @@ export function Modal({ isOpen, onClose, title, children, size = 'md' }: ModalPr
           </div>
 
           {/* Content */}
-          <div className="bg-white px-4 pt-5 pb-4 sm:p-6">{children}</div>
+          <div className="bg-light-card dark:bg-dark-card px-4 pt-5 pb-4 sm:p-6">{children}</div>
         </div>
       </div>
     </div>

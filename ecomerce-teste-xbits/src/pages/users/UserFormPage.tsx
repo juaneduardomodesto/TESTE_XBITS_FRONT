@@ -106,7 +106,7 @@ export function UserFormPage() {
   };
 
   if (loading) {
-    return <div className="text-center py-8">Carregando...</div>;
+    return <div className="text-center py-8 text-gray-900 dark:text-white">Carregando...</div>;
   }
 
   return (
@@ -118,8 +118,8 @@ export function UserFormPage() {
         </Button>
       </div>
 
-      <div className="bg-white rounded-lg shadow p-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">
+      <div className="bg-white dark:bg-gray-900 rounded-lg shadow dark:shadow-gray-800 p-8">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
           {isEditing ? 'Editar Usuário' : 'Novo Usuário'}
         </h1>
 
@@ -172,15 +172,15 @@ export function UserFormPage() {
             {...register('roles', { valueAsNumber: true })}
           />
 
-          <div className="space-y-3 border-t pt-6">
+          <div className="space-y-3 border-t border-gray-200 dark:border-gray-700 pt-6">
             <div className="flex items-center space-x-2">
               <input
                 type="checkbox"
                 id="isActive"
-                className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                className="w-4 h-4 text-indigo-600 dark:text-indigo-500 border-gray-300 dark:border-gray-600 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600"
                 {...register('isActive')}
               />
-              <label htmlFor="isActive" className="text-sm font-medium text-gray-700">
+              <label htmlFor="isActive" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Usuário ativo
               </label>
             </div>
@@ -189,10 +189,10 @@ export function UserFormPage() {
               <input
                 type="checkbox"
                 id="acceptPrivacyPolicy"
-                className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                className="w-4 h-4 text-indigo-600 dark:text-indigo-500 border-gray-300 dark:border-gray-600 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600"
                 {...register('acceptPrivacyPolicy')}
               />
-              <label htmlFor="acceptPrivacyPolicy" className="text-sm font-medium text-gray-700">
+              <label htmlFor="acceptPrivacyPolicy" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Aceita política de privacidade
               </label>
             </div>
@@ -201,16 +201,16 @@ export function UserFormPage() {
               <input
                 type="checkbox"
                 id="acceptTermsOfUse"
-                className="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                className="w-4 h-4 text-indigo-600 dark:text-indigo-500 border-gray-300 dark:border-gray-600 rounded focus:ring-indigo-500 dark:focus:ring-indigo-600"
                 {...register('acceptTermsOfUse')}
               />
-              <label htmlFor="acceptTermsOfUse" className="text-sm font-medium text-gray-700">
+              <label htmlFor="acceptTermsOfUse" className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Aceita termos de uso
               </label>
             </div>
           </div>
 
-          <div className="flex justify-end space-x-4 pt-6 border-t">
+          <div className="flex justify-end space-x-4 pt-6 border-t border-gray-200 dark:border-gray-700">
             <Button
               type="button"
               variant="secondary"

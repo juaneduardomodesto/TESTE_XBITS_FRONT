@@ -55,8 +55,8 @@ export function CartPage() {
       <div className="max-w-7xl mx-auto">
         <div className="flex items-center justify-center min-h-[400px]">
           <div className="text-center">
-            <ShoppingCart className="w-16 h-16 text-gray-400 mx-auto mb-4 animate-pulse" />
-            <p className="text-gray-600">Carregando carrinho...</p>
+            <ShoppingCart className="w-16 h-16 text-light-text-tertiary dark:text-dark-text-tertiary mx-auto mb-4 animate-pulse" />
+            <p className="text-light-text-secondary dark:text-dark-text-secondary">Carregando carrinho...</p>
           </div>
         </div>
       </div>
@@ -66,14 +66,14 @@ export function CartPage() {
   if (!cart || cart.items.length === 0) {
     return (
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Carrinho de Compras</h1>
+        <h1 className="text-3xl font-bold text-light-text-primary dark:text-dark-text-primary mb-8">Carrinho de Compras</h1>
         
-        <div className="bg-white rounded-lg shadow p-12 text-center">
-          <ShoppingBag className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-gray-900 mb-2">
+        <div className="bg-light-card dark:bg-dark-card rounded-lg shadow-lg-light dark:shadow-lg-dark p-12 text-center">
+          <ShoppingBag className="w-16 h-16 text-light-text-tertiary dark:text-dark-text-tertiary mx-auto mb-4" />
+          <h2 className="text-xl font-semibold text-light-text-primary dark:text-dark-text-primary mb-2">
             Seu carrinho está vazio
           </h2>
-          <p className="text-gray-600 mb-6">
+          <p className="text-light-text-secondary dark:text-dark-text-secondary mb-6">
             Adicione produtos ao carrinho para continuar comprando
           </p>
           <Link to="/products">
@@ -91,8 +91,8 @@ export function CartPage() {
     <div className="max-w-7xl mx-auto">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Carrinho de Compras</h1>
-          <p className="text-gray-600 mt-1">{cart.totalItems} {cart.totalItems === 1 ? 'item' : 'itens'} no carrinho</p>
+          <h1 className="text-3xl font-bold text-light-text-primary dark:text-dark-text-primary">Carrinho de Compras</h1>
+          <p className="text-light-text-secondary dark:text-dark-text-secondary mt-1">{cart.totalItems} {cart.totalItems === 1 ? 'item' : 'itens'} no carrinho</p>
         </div>
         <Button variant="danger" onClick={handleClearCart}>
           <Trash2 className="w-4 h-4 mr-2" />
@@ -106,7 +106,7 @@ export function CartPage() {
           {cart.items.map((item) => (
             <div
               key={item.id}
-              className="bg-white rounded-lg shadow p-6 hover:shadow-md transition-shadow"
+              className="bg-light-card dark:bg-dark-card rounded-lg shadow-lg-light dark:shadow-lg-dark p-6 hover:shadow-md transition-all duration-200"
             >
               <div className="flex items-start gap-4">
                 {/* Imagem do Produto */}
@@ -118,26 +118,26 @@ export function CartPage() {
                       className="w-24 h-24 object-cover rounded-lg"
                     />
                   ) : (
-                    <div className="w-24 h-24 bg-gray-200 rounded-lg flex items-center justify-center">
-                      <ShoppingBag className="w-8 h-8 text-gray-400" />
+                    <div className="w-24 h-24 bg-light-surface dark:bg-dark-surface rounded-lg flex items-center justify-center">
+                      <ShoppingBag className="w-8 h-8 text-light-text-tertiary dark:text-dark-text-tertiary" />
                     </div>
                   )}
                 </div>
 
                 {/* Informações do Produto */}
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-gray-900 text-lg mb-1">
+                  <h3 className="font-semibold text-light-text-primary dark:text-dark-text-primary text-lg mb-1">
                     {item.productName}
                   </h3>
-                  <p className="text-sm text-gray-600 mb-2">
+                  <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary mb-2">
                     Código: <span className="font-medium">{item.productCode}</span>
                   </p>
-                  <p className="text-lg font-bold text-indigo-600">
+                  <p className="text-lg font-bold text-light-accent dark:text-dark-accent">
                     {new Intl.NumberFormat('pt-BR', {
                       style: 'currency',
                       currency: 'BRL'
                     }).format(item.unitPrice)}
-                    <span className="text-sm text-gray-500 font-normal ml-2">
+                    <span className="text-sm text-light-text-tertiary dark:text-dark-text-tertiary font-normal ml-2">
                       por unidade
                     </span>
                   </p>
@@ -145,7 +145,7 @@ export function CartPage() {
 
                 {/* Controles de Quantidade */}
                 <div className="flex flex-col items-end gap-4">
-                  <div className="flex items-center gap-2 bg-gray-50 rounded-lg p-2">
+                  <div className="flex items-center gap-2 bg-light-surface dark:bg-dark-surface rounded-lg p-2">
                     <Button
                       variant="secondary"
                       size="sm"
@@ -155,7 +155,7 @@ export function CartPage() {
                     >
                       <Minus className="w-4 h-4" />
                     </Button>
-                    <span className="w-12 text-center font-semibold text-gray-900">
+                    <span className="w-12 text-center font-semibold text-light-text-primary dark:text-dark-text-primary">
                       {item.quantity}
                     </span>
                     <Button
@@ -169,8 +169,8 @@ export function CartPage() {
                   </div>
 
                   <div className="text-right">
-                    <p className="text-sm text-gray-600 mb-1">Subtotal</p>
-                    <p className="text-xl font-bold text-gray-900">
+                    <p className="text-sm text-light-text-secondary dark:text-dark-text-secondary mb-1">Subtotal</p>
+                    <p className="text-xl font-bold text-light-text-primary dark:text-dark-text-primary">
                       {new Intl.NumberFormat('pt-BR', {
                         style: 'currency',
                         currency: 'BRL'
@@ -182,7 +182,7 @@ export function CartPage() {
                     variant="ghost"
                     size="sm"
                     onClick={() => handleRemoveItem(item.id, item.productName)}
-                    className="text-red-600 hover:text-red-700 hover:bg-red-50"
+                    className="text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
                   >
                     <Trash2 className="w-4 h-4 mr-2" />
                     Remover
@@ -195,13 +195,13 @@ export function CartPage() {
 
         {/* Resumo do Pedido */}
         <div className="lg:col-span-1">
-          <div className="bg-white rounded-lg shadow p-6 sticky top-8">
-            <h2 className="text-xl font-bold text-gray-900 mb-6">Resumo do Pedido</h2>
+          <div className="bg-light-card dark:bg-dark-card rounded-lg shadow-lg-light dark:shadow-lg-dark p-6 sticky top-8">
+            <h2 className="text-xl font-bold text-light-text-primary dark:text-dark-text-primary mb-6">Resumo do Pedido</h2>
             
             <div className="space-y-4 mb-6">
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-light-text-secondary dark:text-dark-text-secondary">
                 <span>Subtotal ({cart.totalItems} {cart.totalItems === 1 ? 'item' : 'itens'})</span>
-                <span className="font-medium text-gray-900">
+                <span className="font-medium text-light-text-primary dark:text-dark-text-primary">
                   {new Intl.NumberFormat('pt-BR', {
                     style: 'currency',
                     currency: 'BRL'
@@ -209,24 +209,24 @@ export function CartPage() {
                 </span>
               </div>
 
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-light-text-secondary dark:text-dark-text-secondary">
                 <span>Frete</span>
                 <span className="text-sm text-green-600 font-medium">
                   Calculado no checkout
                 </span>
               </div>
 
-              <div className="flex justify-between text-gray-600">
+              <div className="flex justify-between text-light-text-secondary dark:text-dark-text-secondary">
                 <span>Desconto</span>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-light-text-tertiary dark:text-dark-text-tertiary">
                   -
                 </span>
               </div>
               
-              <div className="border-t pt-4">
+              <div className="border-t border-light-border dark:border-dark-border pt-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-lg font-bold text-gray-900">Total</span>
-                  <span className="text-2xl font-bold text-indigo-600">
+                  <span className="text-lg font-bold text-light-text-primary dark:text-dark-text-primary">Total</span>
+                  <span className="text-2xl font-bold text-light-accent dark:text-dark-accent">
                     {new Intl.NumberFormat('pt-BR', {
                       style: 'currency',
                       currency: 'BRL'
@@ -253,12 +253,12 @@ export function CartPage() {
               </Link>
             </div>
 
-            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+            <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
               <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
-                <div className="text-sm text-blue-800">
+                <AlertCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 flex-shrink-0 mt-0.5" />
+                <div className="text-sm text-blue-800 dark:text-blue-200">
                   <p className="font-medium mb-1">Frete Grátis</p>
-                  <p className="text-blue-700">
+                  <p className="text-blue-700 dark:text-blue-300">
                     Para compras acima de R$ 200,00
                   </p>
                 </div>

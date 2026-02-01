@@ -38,10 +38,10 @@ export function AddToCartButton({
         productId,
         quantity
       });
-      
+
       setShowSuccess(true);
       toast.success(`${productName} adicionado ao carrinho!`);
-      
+
       setTimeout(() => {
         setShowSuccess(false);
         setQuantity(1);
@@ -75,7 +75,7 @@ export function AddToCartButton({
   return (
     <div className={`flex items-center gap-2 ${className}`}>
       {showQuantity && (
-        <div className="flex items-center gap-1 bg-gray-100 rounded-lg p-1">
+        <div className="flex items-center gap-1 bg-surface-light dark:bg-surface-dark rounded-lg p-1 border border-border-light dark:border-border-dark">
           <button
             onClick={decrementQuantity}
             disabled={quantity <= 1}

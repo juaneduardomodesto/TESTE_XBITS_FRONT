@@ -39,7 +39,7 @@ export function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex items-center justify-center p-4">
+    <div className="min-h-screen bg-light-background dark:bg-dark-background flex items-center justify-center p-4">
       {/* Theme Toggle - Posição absoluta */}
       <div className="absolute top-4 right-4">
         <ThemeToggle />
@@ -47,20 +47,20 @@ export function LoginPage() {
 
       <div className="w-full max-w-md">
         {/* Card de Login */}
-        <div className="card animate-fade-in">
+        <div className="bg-light-card dark:bg-dark-card border border-light-border dark:border-dark-border rounded-xl p-8 shadow-lg animate-fade-in">
           {/* Logo/Ícone */}
           <div className="flex justify-center mb-8">
-            <div className="w-16 h-16 bg-accent rounded-2xl flex items-center justify-center">
+            <div className="w-16 h-16 bg-light-accent dark:bg-dark-accent rounded-2xl flex items-center justify-center">
               <LogIn className="h-8 w-8 text-white" />
             </div>
           </div>
 
           {/* Título */}
           <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-text-primary mb-2">
+            <h1 className="text-3xl font-bold text-light-text-primary dark:text-dark-text-primary mb-2">
               Bem-vindo de volta
             </h1>
-            <p className="text-text-secondary">
+            <p className="text-light-text-secondary dark:text-dark-text-secondary">
               Faça login para continuar
             </p>
           </div>
@@ -95,12 +95,12 @@ export function LoginPage() {
           </form>
 
           {/* Link para Registro */}
-          <div className="mt-6 pt-6 border-t border-border text-center">
-            <p className="text-text-secondary text-sm">
+          <div className="mt-6 pt-6 border-t border-light-border dark:border-dark-border text-center">
+            <p className="text-light-text-secondary dark:text-dark-text-secondary text-sm">
               Não tem uma conta?{' '}
               <Link
                 to="/register"
-                className="text-accent font-medium hover:underline"
+                className="text-light-accent dark:text-dark-accent font-medium hover:underline"
               >
                 Registre-se
               </Link>
@@ -109,7 +109,7 @@ export function LoginPage() {
         </div>
 
         {/* Footer */}
-        <p className="text-center text-text-tertiary text-xs mt-6">
+        <p className="text-center text-light-text-tertiary dark:text-dark-text-tertiary text-xs mt-6">
           © 2024 E-Commerce. Todos os direitos reservados.
         </p>
       </div>

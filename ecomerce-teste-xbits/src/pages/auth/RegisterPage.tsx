@@ -1,6 +1,7 @@
 import { ERoles } from "@/business";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useAuthStore } from "@/hook/useAuthStore";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserPlus } from "lucide-react";
@@ -55,16 +56,21 @@ export function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 px-4 py-12">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-2xl shadow-xl">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center px-4 py-12">
+      <div className="max-w-md w-full space-y-8 bg-light-card dark:bg-dark-card p-8 rounded-2xl shadow-xl">
+        {/* Theme Toggle */}
+        <div className="absolute top-4 right-4">
+          <ThemeToggle />
+        </div>
+
         <div className="text-center">
-          <div className="mx-auto h-12 w-12 bg-indigo-600 rounded-xl flex items-center justify-center">
+          <div className="mx-auto h-12 w-12 bg-light-accent dark:bg-dark-accent rounded-xl flex items-center justify-center">
             <UserPlus className="h-6 w-6 text-white" />
           </div>
-          <h2 className="mt-6 text-3xl font-bold text-gray-900">
+          <h2 className="mt-6 text-3xl font-bold text-light-text-primary dark:text-dark-text-primary">
             Criar nova conta
           </h2>
-          <p className="mt-2 text-sm text-gray-600">
+          <p className="mt-2 text-sm text-light-text-secondary dark:text-dark-text-secondary">
             Preencha os dados para se cadastrar
           </p>
         </div>
@@ -113,10 +119,10 @@ export function RegisterPage() {
                 <input
                   id="acceptPrivacyPolicy"
                   type="checkbox"
-                  className="mt-1 w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                  className="mt-1 w-4 h-4 text-light-accent dark:text-dark-accent border-light-border dark:border-dark-border rounded focus:ring-light-accent dark:focus:ring-dark-accent"
                   {...register('acceptPrivacyPolicy')}
                 />
-                <label htmlFor="acceptPrivacyPolicy" className="ml-2 text-sm text-gray-600">
+                <label htmlFor="acceptPrivacyPolicy" className="ml-2 text-sm text-light-text-primary dark:text-dark-text-primary">
                   Aceito a política de privacidade
                 </label>
               </div>
@@ -128,10 +134,10 @@ export function RegisterPage() {
                 <input
                   id="acceptTermsOfUse"
                   type="checkbox"
-                  className="mt-1 w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+                  className="mt-1 w-4 h-4 text-light-accent dark:text-dark-accent border-light-border dark:border-dark-border rounded focus:ring-light-accent dark:focus:ring-dark-accent"
                   {...register('acceptTermsOfUse')}
                 />
-                <label htmlFor="acceptTermsOfUse" className="ml-2 text-sm text-gray-600">
+                <label htmlFor="acceptTermsOfUse" className="ml-2 text-sm text-light-text-primary dark:text-dark-text-primary">
                   Aceito os termos de uso
                 </label>
               </div>
@@ -144,7 +150,7 @@ export function RegisterPage() {
           <div className="text-center">
             <Link
               to="/login"
-              className="text-sm font-medium text-indigo-600 hover:text-indigo-500"
+              className="text-sm font-medium text-light-accent dark:text-dark-accent hover:opacity-80"
             >
               Já tem uma conta? Faça login
             </Link>

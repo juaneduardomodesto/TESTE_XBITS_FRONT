@@ -26,13 +26,13 @@
   }
 
   * {
-    @apply border-border;
+    @apply border-border-light dark:border-border-dark;
   }
 
   body {
-    @apply bg-background text-text-primary;
+    @apply bg-background-light dark:bg-background-dark text-text-primary-light dark:text-text-primary-dark;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 
@@ -43,70 +43,54 @@
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-surface;
+    @apply bg-surface-light dark:bg-surface-dark;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-border rounded-lg;
+    @apply bg-gray-400 dark:bg-gray-600 rounded-lg;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--text-tertiary);
-  }
-
-  .dark ::-webkit-scrollbar-track {
-    background: #1A1A1A;
-  }
-
-  .dark ::-webkit-scrollbar-thumb {
-    background: #3F3F3F;
-  }
-
-  .dark ::-webkit-scrollbar-thumb:hover {
-    background: #6B7280;
+    @apply bg-gray-500 dark:bg-gray-500;
   }
 }
 
 @layer components {
-  /* Card minimalista */
   .card {
-    @apply bg-card border border-border rounded-xl p-6 transition-all duration-200;
+    @apply bg-card-light dark:bg-card-dark border border-border-light dark:border-border-dark rounded-xl p-6 transition-all duration-200;
   }
 
   .card:hover {
-    @apply shadow-lg;
+    @apply shadow-lg-light dark:shadow-lg-dark;
   }
 
-  /* Botão minimalista */
   .btn-modern {
     @apply px-4 py-2.5 rounded-lg font-medium transition-all duration-200;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent-light dark:focus:ring-accent-dark;
   }
 
   .btn-primary {
-    @apply bg-accent text-white hover:opacity-90;
+    @apply bg-accent-light dark:bg-accent-dark text-white hover:opacity-90;
   }
 
   .btn-secondary {
-    @apply bg-surface border border-border hover:bg-surface/80;
+    @apply bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark hover:bg-surface-light/80 dark:hover:bg-surface-dark/80;
   }
 
-  /* Input minimalista */
   .input-modern {
-    @apply w-full px-4 py-2.5 bg-surface border border-border rounded-lg;
-    @apply text-text-primary placeholder:text-text-tertiary;
-    @apply focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent;
+    @apply w-full px-4 py-2.5 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg;
+    @apply text-text-primary-light dark:text-text-primary-dark placeholder:text-text-tertiary-light dark:placeholder:text-text-tertiary-dark;
+    @apply focus:outline-none focus:ring-2 focus:ring-accent-light dark:focus:ring-accent-dark focus:border-transparent;
     @apply transition-all duration-200;
   }
 
-  /* Navegação minimalista */
   .nav-link {
-    @apply px-4 py-2 rounded-lg text-text-secondary font-medium;
-    @apply hover:bg-surface hover:text-text-primary transition-all duration-200;
+    @apply px-4 py-2 rounded-lg text-text-secondary-light dark:text-text-secondary-dark font-medium;
+    @apply hover:bg-surface-light dark:hover:bg-surface-dark hover:text-text-primary-light dark:hover:text-text-primary-dark transition-all duration-200;
   }
 
   .nav-link-active {
-    @apply bg-surface text-text-primary;
+    @apply bg-surface-light dark:bg-surface-dark text-text-primary-light dark:text-text-primary-dark;
   }
 }
 
@@ -124,44 +108,33 @@
     text-wrap: balance;
   }
 
-  /* Variáveis CSS para uso direto */
-  .bg-background {
-    background-color: var(--background);
-  }
-
-  .bg-surface {
-    background-color: var(--surface);
-  }
-
-  .bg-card {
-    background-color: var(--card);
-  }
-
-  .border-border {
-    border-color: var(--border);
-  }
-
-  .text-text-primary {
-    color: var(--text-primary);
-  }
-
-  .text-text-secondary {
-    color: var(--text-secondary);
-  }
-
-  .text-text-tertiary {
-    color: var(--text-tertiary);
-  }
-
-  .bg-accent {
-    background-color: var(--accent);
-  }
-
-  .text-accent {
-    color: var(--accent);
-  }
-
-  .bg-border {
-    background-color: var(--border);
-  }
+  .bg-background-light { background-color: #FFFFFF; }
+  .bg-background-dark { background-color: #0F0F0F; }
+  
+  .bg-surface-light { background-color: #F8F9FA; }
+  .bg-surface-dark { background-color: #1A1A1A; }
+  
+  .bg-card-light { background-color: #FFFFFF; }
+  .bg-card-dark { background-color: #282828; }
+  
+  .border-border-light { border-color: #E5E7EB; }
+  .border-border-dark { border-color: #3F3F3F; }
+  
+  .text-text-primary-light { color: #0F0F0F; }
+  .text-text-primary-dark { color: #FFFFFF; }
+  
+  .text-text-secondary-light { color: #6B7280; }
+  .text-text-secondary-dark { color: #9CA3AF; }
+  
+  .text-text-tertiary-light { color: #9CA3AF; }
+  .text-text-tertiary-dark { color: #6B7280; }
+  
+  .text-accent-light { color: #0EA5E9; }
+  .text-accent-dark { color: #38BDF8; }
+  
+  .bg-accent-light { background-color: #0EA5E9; }
+  .bg-accent-dark { background-color: #38BDF8; }
+  
+  .bg-gray-200-light { background-color: #E5E7EB; }
+  .bg-gray-800-dark { background-color: #3F3F3F; }
 }
